@@ -1,6 +1,5 @@
 # Making a rocket module containing variable mass and constant thrust
 
-
 import numpy as np
 import rocket as rk
 import system

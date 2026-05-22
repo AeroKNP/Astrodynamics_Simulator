@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Environment Module",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "Environment_Module.environment",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Rocket Main",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "Rocket_Module.main",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        }
+    ]
+}
