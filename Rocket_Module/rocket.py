@@ -1,12 +1,12 @@
 import numpy as np
 
-dry_mass=5.0
-fuel_mass=5.0
+dry_mass=20000
+fuel_mass=80000
 total_mass=dry_mass+fuel_mass
-T=0.02
-mdot=0.005
-cd = 0.5
-A=0.01
+T=1.8e6
+mdot=600
+cd = 0.3
+A=10
 
 
 def thruster(t,state,extra_parameters):

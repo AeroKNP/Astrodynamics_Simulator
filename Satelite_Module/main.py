@@ -3,7 +3,7 @@
 import numpy as np
 import integrators
 import system as sys
-import Roadmap.Satelite_Module.plotter as plotter
+import plotter
 import thruster
 from controller import controller
 
@@ -24,8 +24,8 @@ def choose_model():
         return True
 
 # region Initialsing Variables
-state=np.array([1.0,0.0,0.0,1.1])
-prev_states=np.array([1.0,0.0,0.0,1.1,1.0,0.0,0.0,1.1])  # Keeps the data of previous two states
+state=np.array([6.771e6,0.0,0.0,7670])
+prev_states=np.array([6.771e6,0.0,0.0,7670,6.771e6,0.0,0.0,7670])  # Keeps the data of previous two states
 history=[state.copy()]
 
 fire_thruster=False
@@ -33,7 +33,7 @@ burn_pending = True # for single burn right now
 
 # Creating the time array
 t=[0]
-t_final=100
+t_final=7000
 dt=0.01
 
 # endregion

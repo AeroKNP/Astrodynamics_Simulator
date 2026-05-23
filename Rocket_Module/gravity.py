@@ -1,6 +1,6 @@
 import numpy as np
 
-mu_earth=1
+mu_earth=3.986e14
 # Creating the gravity fucntion 
 def gravity(t,state,extra_parameters=None):
     x,y,vx,vy,mass=state

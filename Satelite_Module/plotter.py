@@ -9,11 +9,11 @@ def plot_orbit(x,y,t,E,L,r_earth,x_moon,y_moon,use_moon):
     plt.subplots_adjust(hspace=0.5,wspace=0.5)
 
     ax[0][0].plot(x,y)
-    earth = plt.Circle((0,0), 8e-2, fill=True)
+    earth = plt.Circle((0,0), 6.371e6, fill=True)
     ax[0][0].add_patch(earth)
 
     if use_moon:
-        moon = plt.Circle((x_moon,y_moon),8e-2,color="red",fill=True)
+        moon = plt.Circle((x_moon,y_moon),1.7374e6,color="red",fill=True)
         ax[0][0].add_patch(moon)
         ax[0][0].set_xlim(min(np.min(x),x_moon)-1,max(np.max(x),x_moon)+1)
         ax[0][0].set_ylim(min(np.min(y),y_moon)-1,max(np.max(y),y_moon)+1)

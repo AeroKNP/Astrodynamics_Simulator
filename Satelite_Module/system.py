@@ -2,10 +2,10 @@ import numpy as np
 
 
 # Defining the variables for earth and moon
-mu_earth=1
-mu_moon=0.05
+mu_earth=3.986e14
+mu_moon = 4.9048695e12
 
-x_moon,y_moon=[8,0]
+x_moon,y_moon=[3.844e8,0]
 
 # Making the system for only earth state
 def earth_system(t,state):

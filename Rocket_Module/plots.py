@@ -6,8 +6,8 @@ def plot_rocket(x,y,mass,v,r,t):
     fig,ax=plt.subplots(2,2,figsize=(14,16))
     plt.subplots_adjust(hspace=0.5,wspace=0.5)
 
-    ax[0][0].plot(x,y) 
-    ax[0][0].set_aspect('equal')
+    ax[0][0].plot(x,y-6.371e6) 
+    # ax[0][0].set_aspect('equal')
     ax[0][0].set_xlabel("X Co Ordinate")
     ax[0][0].set_ylabel("Y Co ordinate")
     ax[0][0].grid()
@@ -22,7 +22,7 @@ def plot_rocket(x,y,mass,v,r,t):
     ax[1][0].set_ylabel("Velocity")
     ax[1][0].grid()
 
-    ax[1][1].plot(t,r)
+    ax[1][1].plot(t,r-6.371e6)
     ax[1][1].set_xlabel("Time")
     ax[1][1].set_ylabel("Radius")
     ax[1][1].grid()

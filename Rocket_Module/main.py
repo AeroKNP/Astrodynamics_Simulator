@@ -25,12 +25,12 @@ def choose_integrator():
 
 
 # region Initiasling the variables
-state=np.array([1.0,0.0,0.0,1.0,rk.total_mass])
+state=np.array([0.0,6.371e6,0.0001,1.0,rk.total_mass])
 history=[state.copy()]
 
 t=[0]
-dt=0.001
-t_final=100
+dt=0.01
+t_final=1500
 mission_phase=0
 
 # endregion

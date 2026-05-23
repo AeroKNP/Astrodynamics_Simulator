@@ -2,9 +2,9 @@
 import numpy as np
 from Rocket_Module import rocket as rk
 
-rho_surface=1.0
-R_Earth=1.0
-H=0.1
+rho_surface=1.225
+R_Earth=6.371e6
+H=8500
 
 def calc_density(state):
     x=state[0]
