@@ -25,7 +25,11 @@ def drag(t,state,extra_parameters=None):
 
     fd=0.5*calc_density(state)*(rk.cd)*(rk.A)*(v**2)
 
-    dvxdt=-(fd/mass)*(vx/v)
-    dvydt=-(fd/mass)*(vy/v)
+    if v==0:
+        dvxdt=0
+        dvydt=0
+    else:
+        dvxdt=-(fd/mass)*(vx/v)
+        dvydt=-(fd/mass)*(vy/v)
 
     return np.array([0,0,dvxdt,dvydt,0])

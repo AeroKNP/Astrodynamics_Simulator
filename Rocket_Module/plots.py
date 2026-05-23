@@ -1,3 +1,5 @@
+# This is the plotting module which creates the plots of trajectory, mass vs time, radius vs time and velocity vs time
+
 import matplotlib.pyplot as plt
 import numpy as np
 

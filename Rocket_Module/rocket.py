@@ -1,3 +1,5 @@
+# This is the rocket module storing data about the rocket
+
 import numpy as np
 
 dry_mass=20000
@@ -8,18 +10,19 @@ mdot=600
 cd = 0.3
 A=10
 
-
+# This is the function simulating the firing of thrusters
 def thruster(t,state,extra_parameters):
     x,y,vx,vy,mass=state
     v=np.sqrt(vx**2+vy**2)
 
-    mdot,T = extra_parameters
-
+    mdot,T,theta= extra_parameters
+    theta=np.deg2rad(theta)
+    
     dxdt=vx
     dydt=vy
 
-    dvxdt=(T/mass)*(vx/v)
-    dvydt=(T/mass)*(vy/v)
+    dvxdt=(T/mass)*np.cos(theta)
+    dvydt=(T/mass)*np.sin(theta)
 
     dmdt=-mdot
 
