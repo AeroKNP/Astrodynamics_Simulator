@@ -7,13 +7,15 @@ import integrators
 import plots
 import guidance
 
-def check_mission_phase(state,dry_mass):
+def check_mission_phase(t_turn,t,state,dry_mass):
     mass=state[4]
     
-    if mass>dry_mass:
-        mission_phase=0 # Corresponds to thrusters still firing 
+    if t<t_turn:
+        mission_phase="rise" # Corresponds to vertical rise
+    elif mass>dry_mass:
+        mission_phase="turn" # Corresponds to thrusters still firing and doing a gravity turn 
     else:
-        mission_phase=1 # Corresponds to thrusters swtiched off
+        mission_phase="coasting" # Corresponds to thrusters swtiched off
     
     return mission_phase
 
@@ -49,17 +51,22 @@ else:
 
 # Propagation
 while t[-1]<t_final:
-    mission_phase=check_mission_phase(state,rk.dry_mass)
+
+    mission_phase=check_mission_phase(guidance.t_turn,t[-1],state,rk.dry_mass)
 
     # Getting the derivatives from system
     derivatives=system.derivatives
 
     # Getting the theta value from guidance to pass it to thruster
-    theta=guidance.calc_theta(t[-1])
+    theta=guidance.calc_theta(t[-1],mission_phase)
 
     # Updating the state
     state=integrator(state,t[-1],dt,derivatives,[rk.mdot,rk.T,mission_phase,theta])
-
+    
+    # If it strikes earth then simulation stops
+    if (np.sqrt(state[0]**2+state[1]**2)-6.371e6)<0:
+        break
+    
     history.append(state.copy())
     t.append(t[-1]+dt)
     

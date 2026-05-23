@@ -21,7 +21,7 @@ def derivatives(t,state,extra_parameters):
     # Getting the total derivatives 
     total=kinematics(t,state)+gravity(t,state)+drag(t,state)
 
-    if mission_phase==0: # Thrusters are activated
+    if mission_phase=="rise" or mission_phase=="turn": # Thrusters are activated
         total+=rk.thruster(t,state,[mdot,T,theta])
     
     return total

@@ -11,7 +11,7 @@ def plot_rocket(x,y,mass,v,r,t):
     ax[0][0].plot(x,y-6.371e6) 
     # ax[0][0].set_aspect('equal')
     ax[0][0].set_xlabel("X Co Ordinate")
-    ax[0][0].set_ylabel("Y Co ordinate")
+    ax[0][0].set_ylabel("Y Co ordinate from surface of earth")
     ax[0][0].grid()
 
     ax[0][1].plot(t,mass)
@@ -26,7 +26,7 @@ def plot_rocket(x,y,mass,v,r,t):
 
     ax[1][1].plot(t,r-6.371e6)
     ax[1][1].set_xlabel("Time")
-    ax[1][1].set_ylabel("Radius")
+    ax[1][1].set_ylabel("Radius from surface of earth")
     ax[1][1].grid()
 
     plt.show()

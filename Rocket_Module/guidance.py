@@ -2,9 +2,14 @@
 
 import numpy as np
 
-def calc_theta(t):  
+t_turn=15
 
-    theta=90-0.05*t
+def calc_theta(t,mission_phase):  
+
+    if mission_phase=="rise":
+        theta=90
+    else:
+        theta=90-0.67*(t-t_turn)
 
     # Safety clamp to prevent downward firing
     if theta<0:

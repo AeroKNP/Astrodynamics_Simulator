@@ -7,7 +7,6 @@ import plotter
 import thruster
 from controller import controller
 
-
 def choose_integrator():
     n=int(input("Choosing the integrator:\nPress 1 for Euler\nPress 2 for RK4\nPress 3 for Leapfrog\n"))
     while n!=1 and n!=2 and n!=3:
