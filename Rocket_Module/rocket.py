@@ -2,6 +2,7 @@
 
 import numpy as np
 
+# Properties of rocket
 dry_mass=20000
 fuel_mass=80000
 total_mass=dry_mass+fuel_mass
@@ -15,14 +16,14 @@ def thruster(t,state,extra_parameters):
     x,y,vx,vy,mass=state
     v=np.sqrt(vx**2+vy**2)
 
-    mdot,T,theta= extra_parameters
-    theta=np.deg2rad(theta)
+    mdot,T,theta_actual= extra_parameters
+    theta_actual=np.deg2rad(theta_actual)
     
     dxdt=vx
     dydt=vy
 
-    dvxdt=(T/mass)*np.cos(theta)
-    dvydt=(T/mass)*np.sin(theta)
+    dvxdt=(T/mass)*np.cos(theta_actual)
+    dvydt=(T/mass)*np.sin(theta_actual)
 
     dmdt=-mdot
 

@@ -1,4 +1,5 @@
 # Making a rocket module containing variable mass and varying direction thrust
+# Although it has a PID Controller but since we dont have any disturbances yet it is of no use
 
 import numpy as np
 import rocket as rk
@@ -29,10 +30,17 @@ def choose_integrator():
 state=np.array([0.0,6.371e6,0.0,0.0,rk.total_mass])
 history=[state.copy()]
 
+# Creating time parameters
 t=[0]
 dt=0.01
-t_final=1500
+t_final=3000
+
 mission_phase=0
+
+# For PID Controller
+theta_actual=90.0
+prev_error=0.0
+integrated=0.0
 
 # endregion
 
@@ -49,7 +57,7 @@ else:
 
 # endregion
 
-# Propagation
+# region Propagation
 while t[-1]<t_final:
 
     mission_phase=check_mission_phase(guidance.t_turn,t[-1],state,rk.dry_mass)
@@ -57,11 +65,13 @@ while t[-1]<t_final:
     # Getting the derivatives from system
     derivatives=system.derivatives
 
-    # Getting the theta value from guidance to pass it to thruster
-    theta=guidance.calc_theta(t[-1],mission_phase)
-
+    # Getting the desried theta value from guidance to pass it to PID then to thruster
+    theta_des=guidance.calc_theta_desried(t[-1],mission_phase)
+    theta_dot,prev_error,integrated=guidance.PID(theta_actual,theta_des,prev_error,integrated,dt)
+    theta_actual+=theta_dot*dt
+    
     # Updating the state
-    state=integrator(state,t[-1],dt,derivatives,[rk.mdot,rk.T,mission_phase,theta])
+    state=integrator(state,t[-1],dt,derivatives,[rk.mdot,rk.T,mission_phase,theta_actual])
     
     # If it strikes earth then simulation stops
     if (np.sqrt(state[0]**2+state[1]**2)-6.371e6)<0:
