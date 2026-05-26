@@ -2,13 +2,14 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+from Core import constants as cons
 
 def plot_rocket(x,y,mass,v,r,t):
     
     fig,ax=plt.subplots(2,2,figsize=(14,16))
     plt.subplots_adjust(hspace=0.5,wspace=0.5)
 
-    ax[0][0].plot(x,y-6.371e6) 
+    ax[0][0].plot(x,y-cons.R_earth) 
     # ax[0][0].set_aspect('equal')
     ax[0][0].set_xlabel("X Co Ordinate")
     ax[0][0].set_ylabel("Y Co ordinate from surface of earth")
@@ -24,7 +25,7 @@ def plot_rocket(x,y,mass,v,r,t):
     ax[1][0].set_ylabel("Velocity")
     ax[1][0].grid()
 
-    ax[1][1].plot(t,r-6.371e6)
+    ax[1][1].plot(t,r-cons.R_earth)
     ax[1][1].set_xlabel("Time")
     ax[1][1].set_ylabel("Radius from surface of earth")
     ax[1][1].grid()

@@ -3,10 +3,11 @@
 
 import numpy as np
 import rocket as rk
-import system
-import integrators
-import plots
+from Rocket_Module import system
+from Core import integrators
+from Rocket_Module import plots
 import guidance
+from Core import constants as cons
 
 def check_mission_phase(t_turn,t,state,dry_mass):
     mass=state[4]
@@ -27,7 +28,7 @@ def choose_integrator():
     return n
 
 # region Initiasling the variables
-state=np.array([0.0,6.371e6,0.0,0.0,rk.total_mass])
+state=np.array([0.0,cons.R_earth,0.0,0.0,rk.total_mass])
 history=[state.copy()]
 
 # Creating time parameters
@@ -71,10 +72,10 @@ while t[-1]<t_final:
     theta_actual+=theta_dot*dt
     
     # Updating the state
-    state=integrator(state,t[-1],dt,derivatives,[rk.mdot,rk.T,mission_phase,theta_actual])
+    state=integrator(state,t[-1],dt,derivatives,[rk.mdot,rk.T,mission_phase,theta_actual,cons.mu_earth])
     
     # If it strikes earth then simulation stops
-    if (np.sqrt(state[0]**2+state[1]**2)-6.371e6)<0:
+    if (np.sqrt(state[0]**2+state[1]**2)-cons.R_earth)<0:
         break
     
     history.append(state.copy())

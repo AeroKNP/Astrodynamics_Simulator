@@ -3,9 +3,9 @@
 
 import numpy as np
 from bodies import bodies
-import system
-import integrators
-from Solar_System_Module.plots import plotting
+from Solar_System_Module import system
+from Core import integrators
+from Solar_System_Module import plots
 
 def choose_integrator():
     n=int(input("Choosing the integrator:\nPress 1 for Euler\nPress 2 for RK4\nPress 3 for Leapfrog\n"))
@@ -18,6 +18,7 @@ sun_history=[bodies[0]["state"].copy()]
 earth_history=[bodies[1]["state"].copy()]
 mars_history=[bodies[2]["state"].copy()]
 jupiter_history=[bodies[3]["state"].copy()]
+satellite_history=[bodies[4]["state"].copy()]
 
 # Creating time arrays
 t=[0.0]
@@ -55,6 +56,7 @@ while t[-1]<t_final:
     earth_history.append(bodies[1]["state"].copy())
     mars_history.append(bodies[2]["state"].copy()) 
     jupiter_history.append(bodies[3]["state"].copy())
+    satellite_history.append(bodies[4]["state"].copy())
     t.append(t[-1]+dt)
 
 # endregion
@@ -64,6 +66,7 @@ sun_history=np.array(sun_history)
 earth_history=np.array(earth_history)
 mars_history=np.array(mars_history)
 jupiter_history=np.array(jupiter_history)
+satellite_history=np.array(satellite_history)
 
 xsun=sun_history[:,0]
 ysun=sun_history[:,1]
@@ -73,8 +76,10 @@ xmars=mars_history[:,0]
 ymars=mars_history[:,1]
 xjupiter=jupiter_history[:,0]
 yjuptier=jupiter_history[:,1]
+xsatellite=satellite_history[:,0]
+ysatellite=satellite_history[:,1]
 
 # endregion
 
 # Plotting
-plotting([xsun,ysun],[xearth,yearth],[xmars,ymars],[xjupiter,yjuptier])
+plots.plotting([xsun,ysun],[xearth,yearth],[xmars,ymars],[xjupiter,yjuptier],[xsatellite,ysatellite])

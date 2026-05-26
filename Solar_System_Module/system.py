@@ -1,5 +1,5 @@
 import numpy as np
-from gravity import gravity
+from Core.gravity import gravity
 
 # Default function which will exsist in absence of any external effects
 def kinematics(t,state,extra_parameters=None):
@@ -11,7 +11,7 @@ def kinematics(t,state,extra_parameters=None):
     return np.array([dxdt,dydt,0.0,0.0])
 
 # Writing the total derivatives function
-def derivatives(t,state,extra_parameters=None):
+def derivatives(t,state,extra_parameters):
     
     body,bodies=extra_parameters
 

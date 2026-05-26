@@ -1,9 +1,8 @@
 
 import numpy as np
 from Rocket_Module import rocket as rk
+from Core import constants as cons
 
-rho_surface=1.225
-R_Earth=6.371e6
 H=8500
 
 def calc_density(state):
@@ -11,11 +10,11 @@ def calc_density(state):
     y=state[1]
 
     r=np.sqrt(x**2+y**2)
-    h=r-R_Earth
-    if r>(R_Earth+5*H):
+    h=r-cons.R_earth
+    if r>(cons.R_earth+5*H):
         rho=0.0
     else:
-        rho=rho_surface*(np.exp(-h/H))
+        rho=cons.rho_surface*(np.exp(-h/H))
 
     return rho
 

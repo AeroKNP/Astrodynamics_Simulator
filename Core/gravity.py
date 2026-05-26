@@ -1,16 +1,26 @@
+# This is the gravity function for a two body system
+
 import numpy as np
 
-mu_earth=1
-# Creating the gravity fucntion 
-def gravity(t,state,extraparameters):
-    x,y,vx,vy,mass=state
+# Creating the gravity function
+def gravity(t,state,mu,other_state=None):
 
-    r=np.sqrt(x**2+y**2)
+    if other_state is None:
+        other_state=np.zeros(len(state),dtype=float)
+        
+    x=state[0]
+    y=state[1]
 
-    dxdt=vx
-    dydt=vy
+    other_x=other_state[0]
+    other_y=other_state[1]
+    
+    r=np.sqrt((other_x-x)**2+(other_y-y)**2)
 
-    dvxdt=-mu_earth*x/(r**3)
-    dvydt=-mu_earth*y/(r**3)
+    dvxdt=(mu)*(other_x-x)/(r)**3
+    dvydt=(mu)*(other_y-y)/(r)**3
 
-    return np.array([0,0,dvxdt,dvydt,0])
+    grav_der=np.zeros(len(state),dtype=float)
+    grav_der[2]=dvxdt
+    grav_der[3]=dvydt
+
+    return grav_der
