@@ -2,6 +2,7 @@
 
 import numpy as np
 from Core import constants as cons
+
 sun={
     "mu" : cons.mu_sun,
     "state" : np.array([0.0,0.0,0.0,0.0])
@@ -28,3 +29,6 @@ satellite={
 }
 
 bodies=[sun,earth,mars,jupiter,satellite]
+
+for body in bodies:
+    body["history"]=[body["state"].copy()]

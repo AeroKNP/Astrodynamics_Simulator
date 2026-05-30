@@ -12,7 +12,7 @@ def calc_theta_desried(t,mission_phase):
     if mission_phase=="rise":
         theta_des=90
     else:
-        theta_des=90-k*(t-t_turn)
+        theta_des=90-k*(t-t_turn)   # Performing the gravity turn
 
     # Safety clamp to prevent downward firing
     if theta_des<0:
@@ -31,7 +31,7 @@ def PID(theta_actual,theta_des,prev_error,integrated,dt):
 
     theta_dot=(kp*error)+(ki*integrated)+(kd*dedt)
 
-    theta_dot=max(min(theta_dot,5.0),-5.0)
+    theta_dot=max(min(theta_dot,5.0),-5.0)  # Fixing the theta dot between -5 and 5
 
     return  theta_dot,error,integrated
 

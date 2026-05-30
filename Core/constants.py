@@ -15,3 +15,6 @@ R_sun=6.957e8
 
 # Surface conditions of earth
 rho_surface=1.225
+
+# SOI of different planets with respect to their centre
+rsoi_earth=9.24e8

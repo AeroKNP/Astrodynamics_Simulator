@@ -4,15 +4,18 @@ import numpy as np
 from Core import constants as cons
 
 # This function plots the orbits of all bodies 
-def plotting(sun_cords,earth_cords,mars_cords,jupiter_cords,satellite_cords):
+def plotting(ax,sun_cords,earth_cords,mars_cords,jupiter_cords,satellite_cords):
     
-    xsun,ysun=sun_cords
-    xearth,yearth=earth_cords
-    xmars,ymars=mars_cords
-    xjupiter,yjupiter=jupiter_cords
-    xsatellite,ysatellite=satellite_cords
-
-    fig,ax=plt.subplots()
+    xsun=sun_cords[:,0]
+    ysun=sun_cords[:,1]
+    xearth=earth_cords[:,0]
+    yearth=earth_cords[:,1]
+    xmars=mars_cords[:,0]
+    ymars=mars_cords[:,1]
+    xjupiter=jupiter_cords[:,0]
+    yjupiter=jupiter_cords[:,1]
+    xsatellite=satellite_cords[:,0]
+    ysatellite=satellite_cords[:,1]
 
     ax.plot(xsun,ysun,color='yellow',label='Sun')
     ax.plot(xearth,yearth,color='blue',label='Earth')
@@ -21,16 +24,14 @@ def plotting(sun_cords,earth_cords,mars_cords,jupiter_cords,satellite_cords):
     ax.plot(xsatellite,ysatellite,color='green',label='Satellite')
     ax.set_aspect('equal')
     
-    sun=plt.Circle((0,0),cons.R_sun,color='yellow',fill=True)
+    sun=plt.Circle((0,0),cons.R_sun+6e9,color='yellow',fill=True)
     ax.add_patch(sun)
 
-    ax.set_xlabel("X Co ordinate")
-    ax.set_ylabel("Y Co ordinate")
+    ax.set_xlabel("X Co ordinate in sun centered frame")
+    ax.set_ylabel("Y Co ordinate in sun centered frame")
 
     ax.legend()
     ax.grid()
-
-    plt.show()
 
 # region This function animates the solar system
 def animate_orbits(

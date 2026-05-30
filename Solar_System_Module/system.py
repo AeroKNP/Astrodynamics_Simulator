@@ -3,7 +3,8 @@ from Core.gravity import gravity
 
 # Default function which will exsist in absence of any external effects
 def kinematics(t,state,extra_parameters=None):
-    x,y,vx,vy=state
+    vx=state[2]
+    vy=state[3]
 
     dxdt=vx
     dydt=vy

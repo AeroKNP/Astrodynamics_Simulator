@@ -1,12 +1,14 @@
 # This is the systems module which combines all derivatives from modules and decides what currently the system is
-from Core.gravity import gravity
-import rocket as rk
+
 import numpy as np
+from Core.gravity import gravity
 from Environment_Module.environment import drag
+import rocket as rk
 
 # Default function which will exsist in absence of any external effects
 def kinematics(t,state,extra_parameters=None):
-    x,y,vx,vy,mass=state
+    vx=state[2]
+    vy=state[3]
 
     dxdt=vx
     dydt=vy
